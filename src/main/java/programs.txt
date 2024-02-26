@@ -1,0 +1,63 @@
+
+		// int a; int b; a=2+3*5; b=a+1; Print(b)
+		IStmt ex2 = new CompoundStmt(new DeclarationStmt(new IntType(), "a"),
+				new CompoundStmt(new DeclarationStmt(new IntType(), "b"),
+						new CompoundStmt(
+								new AssignStmt("a",
+										new ArithmeticExpr(new ValueExpr(new IntValue(2)),
+												new ArithmeticExpr(new ValueExpr(new IntValue(3)),
+														new ValueExpr(new IntValue(5)), "*"),
+												"+")),
+								new CompoundStmt(
+										new AssignStmt("b",
+												new ArithmeticExpr(new VariableExpr("a"),
+														new ValueExpr(new IntValue(1)), "+")),
+										new PrintStmt(new VariableExpr("b"))))));
+		ProgramState test2 = new ProgramState(ex2);
+		test2.disableStateOutput();
+		test2.executeAll();
+
+		// bool a; int v; a=true; (If a Then v=2 Else v=3); Print(v)
+		IStmt ex3 = new CompoundStmt(new DeclarationStmt(new BoolType(), "a"),
+				new CompoundStmt(new DeclarationStmt(new IntType(), "v"),
+						new CompoundStmt(new AssignStmt("a", new ValueExpr(new BoolValue(true))), new CompoundStmt(
+								new IfStmt(new VariableExpr("a"), new AssignStmt("v", new ValueExpr(new IntValue(2))),
+										new AssignStmt("v", new ValueExpr(new IntValue(3)))),
+								new PrintStmt(new VariableExpr("v"))))));
+
+		ProgramState test3 = new ProgramState(ex3);
+		test3.disableStateOutput();
+		test3.executeAll();
+
+		// int x; x = 7; if(x >= 3 && x <= 6) print(x is in [3,6]) else print(x is not in [3,6])
+		IStmt ex4 = new CompoundStmt(new DeclarationStmt(new IntType(), "x"),
+				new CompoundStmt(new AssignStmt("x", new ValueExpr(new IntValue(7))), new IfStmt(
+						new BoolExpr(new BoolExpr(new VariableExpr("x"), new ValueExpr(new IntValue(3)), ">="),
+								new BoolExpr(new VariableExpr("x"), new ValueExpr(new IntValue(6)), "<="), "and"),
+						new PrintStmt(new ValueExpr(new TextValue("x is in [3,6]"))),
+						new PrintStmt(new ValueExpr(new TextValue("x is not in [3,6]"))))));
+		ProgramState test4 = new ProgramState(ex4);
+		test4.disableStateOutput();
+		test4.executeAll();
+		
+		// float x = 5.0; float y = 2.5; print(x divided by y: ); print(x / y); 
+		// float z = 0.1; print(x multiplied by z: ); print(x * z); 
+		// print(y squared: ); print(y ^ 2); print(float demonstration finished)
+		IStmt ex5 = new CompoundStmt(new InitializationStmt(new FloatType(), "x", new FloatValue((float)5.0)), new CompoundStmt(
+				new InitializationStmt(new FloatType(), "y", new FloatValue((float)2.5)), new CompoundStmt(
+						new PrintStmt(new ValueExpr(new TextValue("x divided by y: "))), new CompoundStmt(new PrintStmt(
+								new ArithmeticExpr(new VariableExpr("x"), new VariableExpr("y"), "/")),
+								new CompoundStmt(new InitializationStmt(new FloatType(), "z", new FloatValue((float)0.1)),
+										new CompoundStmt(new PrintStmt(new ValueExpr(new TextValue("\nx multiplied by z: "))), 
+								new CompoundStmt(new PrintStmt(new ArithmeticExpr(new VariableExpr("x"), new VariableExpr("z"), "*")),
+										new CompoundStmt(new PrintStmt(new ValueExpr(new TextValue("\ny squared: "))), new CompoundStmt(
+											new PrintStmt(new ArithmeticExpr(new VariableExpr("y"), new ValueExpr(new FloatValue(2)), "^")),
+													new PrintStmt(new ValueExpr(new TextValue("\nfloat demonstration finished"))))))))))));
+		ProgramState test5 = new ProgramState(ex5);
+		test5.disableStateOutput();
+		test5.executeAll();
+		
+		IStmt ex6 = new PrintStmt(new ValueExpr(new TextValue("🤓")));
+		ProgramState n = new ProgramState(ex6);
+		n.executeAll();
+		

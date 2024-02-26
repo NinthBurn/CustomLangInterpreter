@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="185.0" maxWidth="430.0" minHeight="185.0" minWidth="430.0" prefHeight="185.0" prefWidth="430.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.ErrorController">
+   <children>
+      <Label alignment="CENTER" layoutY="14.0" prefHeight="40.0" prefWidth="430.0" text="Toy Language Interpreter has encountered an error:" textAlignment="CENTER">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <Region layoutY="34.0" prefHeight="54.0" prefWidth="430.0" />
+      <Label fx:id="error_label" alignment="CENTER" layoutY="56.0" prefHeight="75.0" prefWidth="430.0" text="A VERY LONG AND ANNOYING ERROR MESSAGE GO AWAY AAAA" textAlignment="CENTER" wrapText="true">
+         <font>
+            <Font size="13.0" />
+         </font></Label>
+      <ButtonBar layoutY="131.0" prefHeight="40.0" prefWidth="411.0">
+        <buttons>
+          <Button fx:id="return_button" minWidth="20.0" mnemonicParsing="false" onAction="#onReturnButtonClick" prefHeight="25.0" text="RETURN">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+        </buttons>
+      </ButtonBar>
+   </children>
+</AnchorPane>
